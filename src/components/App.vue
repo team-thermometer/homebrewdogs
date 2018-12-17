@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" class="logo" src="../assets/logo.png">
-    <RouterView></RouterView>
+    <Header/>
+    <main>
+      <RouterView></RouterView>
+    </main>
     {{result}}
   </div>
 </template>
 
 <script>
 import api from '../services/api';
+import Header from './layout/Header';
 
 export default {
   name: 'app',
@@ -17,6 +20,7 @@ export default {
     };
   },
   components: {
+    Header
   },
   created() {
     api.test()
@@ -32,8 +36,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-img.logo {
-  width: 20%;
 }
 </style>
