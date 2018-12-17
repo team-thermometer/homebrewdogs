@@ -55,4 +55,8 @@ export default {
           });
       });
   },
+  getBeers() {
+    return fetch('/api/beers', getOptions('GET'))
+      .then(response => response.json());      
+  },
 };
