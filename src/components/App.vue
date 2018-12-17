@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header/>
     <nav v-if="user">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/beers">Beers List</RouterLink>
@@ -13,13 +14,14 @@
         :onSignIn="handleSignIn"
       />
     </main>
-
   </div>
 </template>
 
 <script>
 import api from '../services/api';
+import Header from './layout/Header';
 import Auth from './auth/Auth';
+
 
 export default {
   name: 'app',
@@ -30,6 +32,7 @@ export default {
     };
   },
   components: {
+    Header
     Auth
   },
   created() {
@@ -77,8 +80,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-img.logo {
-  width: 20%;
 }
 </style>
