@@ -32,7 +32,7 @@ export default {
     };
   },
   components: {
-    Header
+    Header,
     Auth
   },
   created() {
