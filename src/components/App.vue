@@ -1,30 +1,74 @@
 <template>
   <div id="app">
     <Header/>
+    <nav v-if="user">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/beers">Beers List</RouterLink>
+        <a href="#" @click="handleLogout">Logout</a>
+    </nav>
+
     <main>
-      <RouterView></RouterView>
+      <RouterView v-if="user" :user="user"/>
+      <Auth v-else
+        :onSignUp="handleSignUp"
+        :onSignIn="handleSignIn"
+      />
     </main>
-    {{result}}
   </div>
 </template>
 
 <script>
 import api from '../services/api';
 import Header from './layout/Header';
+import Auth from './auth/Auth';
+
 
 export default {
   name: 'app',
   data() {
     return {
-      result: null
+      result: null,
+      user: null,
     };
   },
   components: {
     Header
+    Auth
   },
   created() {
-    api.test()
-      .then(result => this.result = result);
+    const json = window.localStorage.getItem('profile');
+    if(json) {
+      this.setUser(JSON.parse(json));
+    }
+  },
+  methods: {
+    handleSignUp(profile) {
+      return api.signUp(profile)
+        .then(user => {
+          this.setUser(user);
+        });
+    },
+    handleSignIn(credentials) {
+      return api.signIn(credentials)
+        .then(user => {
+          this.setUser(user);
+        });
+    },
+    setUser(user) {
+      this.user = user;
+      if(user) {
+        api.setToken(user.token);
+        window.localStorage.setItem('profile', JSON.stringify(user));
+      }
+      else {
+        api.setToken();
+        window.localStorage.removeItem('profile');
+      }
+    },
+    handleLogout() {
+      this.setUser(null);
+      this.$router.push('/');
+    }
   }
 };
 </script>
