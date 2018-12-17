@@ -1,15 +1,16 @@
 <template>
   <li v-if="beer">
-    <!-- <h4>{{beer.name}}</h4>
-    <p>{{beer.description}}</p> -->
-    I am the Beer.vue component
+    <RouterLink :to="`/beers/${beer.id}`">
+      <h4>{{beer.name}}</h4>
+    </RouterLink>
+      <p>{{beer.description}}</p>
   </li>
 </template>
 
 <script>
 export default {
   props: {
-    beer: Object
+    beer: null
   }
 };
 </script>
