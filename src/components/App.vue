@@ -1,26 +1,71 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" class="logo" src="../assets/logo.png">
-    <RouterView></RouterView>
-    {{result}}
+    <nav v-if="user">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/beers">Beers List</RouterLink>
+        <a href="#" @click="handleLogout">Logout</a>
+    </nav>
+
+    <main>
+      <RouterView v-if="user" :user="user"/>
+      <Auth v-else
+        :onSignUp="handleSignUp"
+        :onSignIn="handleSignIn"
+      />
+    </main>
+
   </div>
 </template>
 
 <script>
 import api from '../services/api';
+import Auth from './auth/Auth';
 
 export default {
   name: 'app',
   data() {
     return {
-      result: null
+      result: null,
+      user: null,
     };
   },
   components: {
+    Auth
   },
   created() {
-    api.test()
-      .then(result => this.result = result);
+    const json = window.localStorage.getItem('profile');
+    if(json) {
+      this.setUser(JSON.parse(json));
+    }
+  },
+  methods: {
+    handleSignUp(profile) {
+      return api.signUp(profile)
+        .then(user => {
+          this.setUser(user);
+        });
+    },
+    handleSignIn(credentials) {
+      return api.signIn(credentials)
+        .then(user => {
+          this.setUser(user);
+        });
+    },
+    setUser(user) {
+      this.user = user;
+      if(user) {
+        api.setToken(user.token);
+        window.localStorage.setItem('profile', JSON.stringify(user));
+      }
+      else {
+        api.setToken();
+        window.localStorage.removeItem('profile');
+      }
+    },
+    handleLogout() {
+      this.setUser(null);
+      this.$router.push('/');
+    }
   }
 };
 </script>
