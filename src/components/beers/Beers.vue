@@ -1,18 +1,24 @@
 <template>
-  <section>
-      <div>
-      <ul>
-          Beers.vue
-      </ul>
-    </div>
-  </section>
+  <div id="app">
+    <RouterView></RouterView>
+    {{beers}}
+  </div>
 </template>
 
 <script>
-//import Beer from './Beer';
-// export default {
-//   components: {
-//     Beer
-//   }
-//};
+import api from '../../services/api';
+export default {
+  name: 'app',
+  data() {
+    return {
+      beers: null
+    };
+  },
+  components: {
+  },
+  created() {
+    api.test()
+      .then(beers => this.beers = beers);
+  }
+};
 </script>
