@@ -1,7 +1,7 @@
 <template>
     <div class="modal" @click="onClose" @keyup.esc="onClose">
         <div class="content" @click.stop="">
-            <button class="close" @click="onClose">Close</button>
+            <button class="close" @click="onClose">X</button>
             <slot></slot>
         </div>
     </div>
@@ -18,7 +18,7 @@ export default {
         this.onClose();
       }
     };
-    document.addEventListener('keyup, this.documentListener');
+    document.addEventListener('keyup', this.documentListener);
   },
   destroyed() {
     document.removeEventListener('keyup', this.documentListener);
@@ -40,7 +40,7 @@ export default {
 .content {
   position: relative;
   background: white;
-  padding: 40px;
+  padding: 60px;
 }
 .close {
   position: absolute;
