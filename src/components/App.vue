@@ -14,6 +14,7 @@
         :onSignIn="handleSignIn"
       />
     </main>
+    <Footer/>
   </div>
 </template>
 
@@ -21,7 +22,7 @@
 import api from '../services/api';
 import Header from './layout/Header';
 import Auth from './auth/Auth';
-
+import Footer from './layout/Footer';
 
 export default {
   name: 'app',
@@ -33,6 +34,7 @@ export default {
   },
   components: {
     Header,
+    Footer,
     Auth
   },
   created() {
