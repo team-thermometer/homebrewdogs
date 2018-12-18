@@ -4,6 +4,7 @@
     <nav v-if="user">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/beers">Beers List</RouterLink>
+        <RouterLink to="/about">About Us</RouterLink>
         <a href="#" @click="handleLogout">Logout</a>
     </nav>
 
@@ -73,12 +74,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+nav {
+  display:flex;
+  justify-content: space-evenly;
 }
 </style>
