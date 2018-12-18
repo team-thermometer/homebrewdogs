@@ -10,6 +10,7 @@
     <Beer v-for="beer in beers"
       :key="beer.id"
       :beer="beer"/>
+    <Pagination/>
   </ul>
 </template>
 
@@ -18,6 +19,7 @@ import api from '../../services/api';
 import Beer from './Beer';
 import Modal from '../shared/Modal';
 import BeerSearch from './BeerSearch';
+import Pagination from '../shared/Pagination';
 
 export default {
   data() {
@@ -30,7 +32,8 @@ export default {
   components: {
     Beer,
     BeerSearch,
-    Modal
+    Modal,
+    Pagination
   },
   methods: {
     handleSearch(keyword) {
@@ -54,6 +57,9 @@ ul {
   list-style: none;
   padding-left: 0;
   margin: 0em 20em 0em 20em;
+}
+li {
+  padding: 20px;
 }
 .search {
   cursor: pointer;
