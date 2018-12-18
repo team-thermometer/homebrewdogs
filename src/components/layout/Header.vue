@@ -15,9 +15,6 @@ export default {
 };
 </script>
 
-<style>
-nav {
-  display:flex;
-  justify-content: space-evenly;
-}
+<style scoped>
+
 </style>
