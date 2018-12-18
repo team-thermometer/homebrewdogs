@@ -1,15 +1,15 @@
 <template>
   <ul v-if="beers">
-    <Beer v-for="beer in beers"
-      :key="beer.id"
-      :beer="beer"/>
     <p>
-    <button @click="showModal = true"> Search
+    <button class="search" @click="showModal = true"> Search
     </button>
     </p>
     <Modal v-if="showModal" :onClose="() => showModal = false">
       <BeerSearch :onSearch="handleSearch"/>
     </Modal>
+    <Beer v-for="beer in beers"
+      :key="beer.id"
+      :beer="beer"/>
   </ul>
 </template>
 
@@ -49,5 +49,14 @@ ul {
   list-style: none;
   padding-left: 0;
   margin: 0em 20em 0em 20em;
+}
+.search {
+  cursor: pointer;
+  font-size: 12px;
+}
+button:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid gray;
 }
 </style>
