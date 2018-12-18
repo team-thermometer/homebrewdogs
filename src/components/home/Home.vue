@@ -28,7 +28,7 @@ export default {
   components: {
   },
   created() {
-    api.test()
+    api.getBeers()
       .then(beers => this.beers = beers);
   }
 };
