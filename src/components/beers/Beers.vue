@@ -20,7 +20,7 @@ export default {
     Beer
   },
   created() {
-    api.test()
+    api.getBeers()
       .then(beers => this.beers = beers);
   }
 };

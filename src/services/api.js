@@ -20,10 +20,10 @@ const getOptions = (method, data) => {
 
 export default {
   
-  test() {
-    return fetch('https://api.punkapi.com/v2/beers')
-      .then(response => response.json());
-  },
+  // test() {
+  //   return fetch('https://api.punkapi.com/v2/beers')
+  //     .then(response => response.json());
+  // },
   setToken(t) {
     token = t;
   },
@@ -56,7 +56,11 @@ export default {
       });
   },
   getBeers() {
-    return fetch('/api/beers', getOptions('GET'))
+    return fetch('https://api.punkapi.com/v2/beers', getOptions('GET'))
       .then(response => response.json());      
   },
+  getBeer(id) {
+    return fetch(`https://api.punkapi.com/v2/beers/${id}`)
+      .then(response => response.json());
+  }
 };
