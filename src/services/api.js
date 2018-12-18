@@ -62,5 +62,9 @@ export default {
   getBeer(id) {
     return fetch(`https://api.punkapi.com/v2/beers/${id}`)
       .then(response => response.json());
+  },
+  getBeerByKeyword(keyword) {
+    return fetch(`https://api.punkapi.com/v2/beers?beer_name=${keyword}`)
+      .then(response => response.json());
   }
 };

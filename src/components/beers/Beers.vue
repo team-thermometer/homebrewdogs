@@ -23,7 +23,8 @@ export default {
   data() {
     return {
       beers: null,
-      showModal: false
+      showModal: false,
+      
     };
   },
   components: {
@@ -32,9 +33,13 @@ export default {
     Modal
   },
   methods: {
-    handleSearch(beer) {
-      return this.onSearch(beer)
-        .then(() => this.show = false);
+    handleSearch(keyword) {
+      this.searchBeers(keyword);
+      this.showModal = false;
+    },
+    searchBeers(keyword) {
+      api.getBeerByKeyword(keyword)
+        .then(beers => this.beers = beers);
     }
   },
   created() {
