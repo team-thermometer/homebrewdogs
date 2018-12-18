@@ -10,7 +10,11 @@
     <Beer v-for="beer in beers"
       :key="beer.id"
       :beer="beer"/>
-    <Pagination/>
+    <p>
+      <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
+      Page {{page}}
+      <button @click="handlePage(1)">Next</button>
+    </p>
   </ul>
 </template>
 
@@ -19,13 +23,13 @@ import api from '../../services/api';
 import Beer from './Beer';
 import Modal from '../shared/Modal';
 import BeerSearch from './BeerSearch';
-import Pagination from '../shared/Pagination';
 
 export default {
   data() {
     return {
       beers: null,
       showModal: false,
+      page: 1
       
     };
   },
@@ -33,7 +37,6 @@ export default {
     Beer,
     BeerSearch,
     Modal,
-    Pagination
   },
   methods: {
     handleSearch(keyword) {
@@ -43,6 +46,25 @@ export default {
     searchBeers(keyword) {
       api.getBeerByKeyword(keyword)
         .then(beers => this.beers = beers);
+    },
+    handlePage(increment) {
+      this.page += increment;
+      this.recordPage();
+    },
+    recordPage() {
+      this.$router.push({
+        query: {
+          page: this.page
+        }
+      });
+    }
+  },
+  watch: {
+    $route(newRoute, oldRoute) {
+      let newPage = newRoute.query.page;
+      const oldPage = oldRoute.query.page;
+      if(newPage === oldPage) return;
+      this.page = newPage;
     }
   },
   created() {

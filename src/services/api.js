@@ -51,8 +51,8 @@ export default {
           });
       });
   },
-  getBeers() {
-    return fetch('/api/beers', getOptions('GET'))
+  getBeers(page) {
+    return fetch(`/api/beers?page=${page}`, getOptions('GET'))
       .then(response => response.json());      
   },
   getBeer(id) {

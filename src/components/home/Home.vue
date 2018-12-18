@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>Top 10 Beers!</h1>
-        <div v-for="beer in beers.slice(2, 12)"
+        <div v-for="beer in beers"
             :key="beer.name" class="list">
             <img :src= "beer.image_url">
             <div class="info">
@@ -29,7 +29,7 @@ export default {
   },
   created() {
     api.getBeers()
-      .then(beers => this.beers = beers);
+      .then(beers => this.beers = beers.slice(2, 12));
   }
 };
 </script>
