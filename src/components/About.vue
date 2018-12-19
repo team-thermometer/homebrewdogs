@@ -12,7 +12,7 @@
     </section>
     <section>
     <h3>Dyanna "Dee" Tolman</h3>
-    <!-- <img src= "../assets/profile-pic.jpg"> -->
+    <img src= "../assets/profile.jpg">
     <p>
         Dyanna is currently a student at Alchemy Code Lab and has lived in Portland on and off for 10 years. 
         Originally from Singapore, she enjoys traveling, trying new restaurants and spending time with her family.
@@ -36,4 +36,8 @@
 </template>
 
 <style>
+img {
+ width: 200px;
+    height: 120px;
+}
 </style>
