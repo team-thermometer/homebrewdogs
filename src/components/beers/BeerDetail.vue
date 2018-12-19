@@ -14,12 +14,13 @@
 import api from '../../services/api';
 
 export default {
-  props: {
-    onAdd: Function
-  },
+  // props: {
+  //   onAdd: Function
+  // },
   data() {
     return {
-      beer: null
+      beer: null,
+      favorites: []
     };
   },
   created() {
@@ -29,11 +30,14 @@ export default {
       });
   },
   methods: {
-    handleAdd(favorite) {
-      return api.addFavorite(favorite)
+    handleAdd() {
+      let oneBeer = { name: this.beer.name };
+      return api.addFavorite(oneBeer)
         .then(saved => {
+          console.log(saved);
           this.favorites.push(saved);
-          console.log(1);
+          // this.$router.push('/profile');
+          // alert('beer added to your profile!');
         });
     }
   }
