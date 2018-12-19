@@ -25,8 +25,7 @@ export default {
   data() {
     return {
       favorites: null, 
-      beer: null,
-      favorites: null,
+      beer: null
     };
   },
   created() {
