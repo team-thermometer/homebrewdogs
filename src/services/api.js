@@ -78,6 +78,16 @@ export default {
   },
   addRating(rating) {
     return fetch('/api/ratings', getOptions('POST', rating))
+  },
+  deleteFavorite(id) {
+    // console.log(id);
+    return fetch(`/api/favorites/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+      },
+    })
       .then(response => response.json());
   }
 };

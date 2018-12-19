@@ -9,7 +9,7 @@
         <a href="#" @click="handleLogout">Logout</a>
     </nav>
 
-    <main>
+    <main class="content">
       <RouterView v-if="user" :user="user"/>
       <Auth v-else
         :onSignUp="handleSignUp"
@@ -91,5 +91,9 @@ main {
 nav {
   display:flex;
   justify-content: space-evenly;
+}
+
+.content {
+    min-height:73vh;
 }
 </style>

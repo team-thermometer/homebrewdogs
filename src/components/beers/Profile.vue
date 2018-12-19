@@ -13,6 +13,7 @@
                 {{beer[0].name}}
                 </li>
             </div>
+        <button @click="handleDelete">X</button>
         </div>
     </div>
 </template>
@@ -20,10 +21,12 @@
 <script>
 import api from '../../services/api';
 export default {
+
   data() {
     return {
       favorites: null, 
       beer: null,
+      favorites: null,
     };
   },
   created() {
@@ -33,6 +36,15 @@ export default {
       .then(beer => {
         this.beer = beer;
       });
+  },
+  methods: {
+    handleDelete() {
+      api.deleteFavorite(this.favorites[0].id)
+        .then(() => {
+          alert('deleted: ' + this.favorites[0].name);
+          this.$router.go();
+        });
+    }
   }
 };
 </script>
