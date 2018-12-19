@@ -3,15 +3,21 @@
     <h2>{{beer.name}}</h2>
     <p class="checkmark"
         @click="handleAdd">✓</p>
-      <p>{{beer.description}}
-      <p>ABV: {{beer.abv}}</p>
-      <p>IBU: {{beer.ibu}}</p>
-      <p>First brewed: {{beer.first_brewed}}</p>
+    <star-rating class="stars"
+                :increment="0.5"
+                v-model="rating"></star-rating>
+    {{rating}}
+    <p>{{beer.description}}
+    <p>ABV: {{beer.abv}}</p>
+    <p>IBU: {{beer.ibu}}</p>
+    <p>First brewed: {{beer.first_brewed}}</p>
+    
   </section>
 </template>
 
 <script>
 import api from '../../services/api';
+import { StarRating } from 'vue-rate-it';
 
 export default {
   // props: {
@@ -20,14 +26,20 @@ export default {
   data() {
     return {
       beer: null,
-      favorites: []
+      favorites: [],
+      beerIcon: '',
+      rating: 0
     };
+  },
+  components: {
+    StarRating
   },
   created() {
     api.getBeer(this.$route.params.id)
       .then(beer => {
         this.beer = beer[0];
       });
+    
   },
   methods: {
     handleAdd() {
@@ -39,6 +51,9 @@ export default {
           // this.$router.push('/profile');
           // alert('beer added to your profile!');
         });
+    },
+    handleRate() {
+      console.log();
     }
   }
 
@@ -62,5 +77,8 @@ h2 {
   color: green;
   font-size: 28px;
   cursor: pointer;
+}
+.stars {
+  margin-left: 250px;
 }
 </style>
