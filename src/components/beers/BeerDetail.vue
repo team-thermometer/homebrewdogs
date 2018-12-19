@@ -5,7 +5,8 @@
         @click="handleAdd">✓</p>
     <star-rating class="stars"
                 :increment="0.5"
-                v-model="rating"></star-rating>
+                v-model="rating"
+                @click.native="handleRate"></star-rating>
     {{rating}}
     <p>{{beer.description}}
     <p>ABV: {{beer.abv}}</p>
@@ -20,11 +21,9 @@ import api from '../../services/api';
 import { StarRating } from 'vue-rate-it';
 
 export default {
-  // props: {
-  //   onAdd: Function
-  // },
   data() {
     return {
+      profile: null,
       beer: null,
       favorites: [],
       beerIcon: '',
@@ -39,7 +38,8 @@ export default {
       .then(beer => {
         this.beer = beer[0];
       });
-    
+    this.profile = JSON.parse(window.localStorage.getItem('profile'));
+    console.log('profile', this.profile);
   },
   methods: {
     handleAdd() {
@@ -53,7 +53,13 @@ export default {
         });
     },
     handleRate() {
-      console.log();
+      console.log('rating', this.rating);
+
+      let rating = { rating: this.rating, profileId: this.profile.id, favoriteId: this.beer.id };
+      return api.addRating(rating)
+        .then(savedRating => {
+          this.ratings.push(savedRating);
+        });
     }
   }
 
