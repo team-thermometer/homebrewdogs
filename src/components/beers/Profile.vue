@@ -17,8 +17,7 @@ export default {
 
   data() {
     return {
-      favorite: [],
-      favorites: null, 
+      favorites: null,
     };
   },
   created() {
@@ -27,9 +26,11 @@ export default {
   },
   methods: {
     handleDelete() {
-    //   let oneFavorite = { name: this.favorite.id };
-      console.log(this.favorites[0]);
-      api.deleteFavorite(this.favorites[0]);
+      api.deleteFavorite(this.favorites[0].id)
+        .then(() => {
+          alert('deleted: ' + this.favorites[0].name);
+          this.$router.go();
+        });
     }
   }
 };
