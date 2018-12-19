@@ -51,16 +51,16 @@ export default {
           });
       });
   },
-  getBeers(page) {
-    return fetch(`/api/beers?page=${page}`, getOptions('GET'))
+  getBeers() {
+    return fetch(`https://api.punkapi.com/v2/beers`, getOptions('GET'))
       .then(response => response.json());      
   },
   getBeer(id) {
     return fetch(`https://api.punkapi.com/v2/beers/${id}`)
       .then(response => response.json());
   },
-  getBeerByKeyword(keyword) {
-    return fetch(`https://api.punkapi.com/v2/beers?beer_name=${keyword}`)
+  getBeerByKeyword(keyword, page = 1) {
+    return fetch(`https://api.punkapi.com/v2/beers?beer_name=${keyword}&page=${page}`)
       .then(response => response.json());
   }
 };
