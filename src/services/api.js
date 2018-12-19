@@ -55,6 +55,10 @@ export default {
     return fetch('/api/favorites', getOptions('GET'))
       .then(response => response.json());
   },
+  addFavorite(favorite) {
+    return fetch('/api/favorites', getOptions('POST', favorite))
+      .then(response => response.json());
+  },
   getBeers() {
     return fetch('/api/beers', getOptions('GET'))
       .then(response => response.json());      

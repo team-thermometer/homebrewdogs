@@ -14,6 +14,9 @@
 import api from '../../services/api';
 
 export default {
+  props: {
+    onAdd: Function
+  },
   data() {
     return {
       beer: null
@@ -26,9 +29,12 @@ export default {
       });
   },
   methods: {
-    handleAdd() {
-      // change for favoriting method
-      console.log(1);
+    handleAdd(favorite) {
+      return api.addFavorite(favorite)
+        .then(saved => {
+          this.favorites.push(saved);
+          console.log(1);
+        });
     }
   }
 
