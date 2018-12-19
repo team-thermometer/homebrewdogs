@@ -2,6 +2,7 @@
   <div id="app">
     <Header/>
     <nav v-if="user">
+        <RouterLink to="/profile" class="profile">Profile</RouterLink>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/beers">Beers List</RouterLink>
         <RouterLink to="/about">About Us</RouterLink>
