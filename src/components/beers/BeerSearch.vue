@@ -13,12 +13,23 @@ export default {
   },
   data() {
     return {
-      keyword: ''
+      keyword: this.search || ''
     };
+  },
+  watch: {
+    search(newSearch) {
+      if(this.keyword !== newSearch) {
+        this.keyword = newSearch;
+      }
+    }
   },
   methods: {
     handleSubmit() {
-      this.onSearch(this.keyword);
+      this.$router.push({
+        query: {
+          search: encodeURIComponent(this.keyword)
+        }
+      });
     }
   }
 };

@@ -1,16 +1,20 @@
 <template>
-  <ul v-if="beers">
+  <ul v-if="search">
     <p>
     <button class="search" @click="showModal = true"> Search
     </button>
     </p>
     <Modal v-if="showModal" :onClose="() => showModal = false">
-      <BeerSearch :onSearch="handleSearch"/>
+      <BeerSearch :onSearch="handleSearch" :search="search"/>
     </Modal>
     <Beer v-for="beer in beers"
       :key="beer.id"
       :beer="beer"/>
-    <Pagination/>
+    <p>
+      <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
+      Searching for &quot;{{ search }}&quot; Page {{page}}
+      <button @click="handlePage(1)">Next</button>
+    </p>
   </ul>
 </template>
 
@@ -19,13 +23,14 @@ import api from '../../services/api';
 import Beer from './Beer';
 import Modal from '../shared/Modal';
 import BeerSearch from './BeerSearch';
-import Pagination from '../shared/Pagination';
 
 export default {
   data() {
     return {
       beers: null,
+      search: decodeURIComponent(this.$route.query.search = ' '),
       showModal: false,
+      page: decodeURIComponent(this.$route.query.page) || 1
       
     };
   },
@@ -33,16 +38,49 @@ export default {
     Beer,
     BeerSearch,
     Modal,
-    Pagination
   },
   methods: {
-    handleSearch(keyword) {
-      this.searchBeers(keyword);
+    handleSearch() {
+      console.log('HANDLE SEARCH');
+      this.recordPage();
+      this.searchBeers();
       this.showModal = false;
     },
-    searchBeers(keyword) {
-      api.getBeerByKeyword(keyword)
-        .then(beers => this.beers = beers);
+    searchBeers() {
+      console.log('orange', this.search);
+      api.getBeerByKeyword(this.search, this.page)
+        .then(beers => {
+          console.log('beers', beers);
+          return this.beers = beers;
+        });
+    },
+    handlePage(increment) {
+      this.page += increment;
+      this.recordPage();
+    },
+    recordPage() {
+      this.$router.push({
+        query: {
+          search: encodeURIComponent(this.search),
+          page: this.page
+        }
+      });
+    }
+  },
+  watch: {
+    $route(newRoute, oldRoute) {
+      const newSearch = newRoute.query.search;
+      const oldSearch = oldRoute.query.search;
+      let newPage = newRoute.query.page;
+      const oldPage = oldRoute.query.page;
+      if(newSearch === oldSearch && newPage === oldPage) return;
+      if(newSearch !== oldSearch) {
+        newPage = 1;
+      }
+      this.search = decodeURIComponent(newSearch);
+      console.log('banana', this.search);
+      this.page = newPage;
+      this.handleSearch();
     }
   },
   created() {
