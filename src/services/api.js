@@ -72,6 +72,13 @@ export default {
     return fetch(`https://api.punkapi.com/v2/beers?beer_name=${keyword}&page=${page}`)
       .then(response => response.json());
   },
+  getRandomBeer() {
+    return fetch('https://api.punkapi.com/v2/beers/random')
+      .then(response => response.json());
+  },
+  addRating(rating) {
+    return fetch('/api/ratings', getOptions('POST', rating))
+  },
   deleteFavorite(id) {
     // console.log(id);
     return fetch(`/api/favorites/${id}`, {
