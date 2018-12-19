@@ -11,11 +11,16 @@
 </template>
 
 <script>
+import api from '../../services/api';
 export default {
   data() {
     return {
       favorites: null, 
     };
+  },
+  created() {
+    api.getFavorites()
+      .then(favorites => this.favorites = favorites);
   }
 };
 </script>

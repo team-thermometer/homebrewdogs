@@ -51,6 +51,10 @@ export default {
           });
       });
   },
+  getFavorites() {
+    return fetch('/api/favorites', getOptions('GET'))
+      .then(response => response.json());
+  },
   getBeers() {
     return fetch('/api/beers', getOptions('GET'))
       .then(response => response.json());      
