@@ -20,12 +20,15 @@ import api from '../../services/api';
 import { StarRating } from 'vue-rate-it';
 
 export default {
+  // props: {
+  //   onAdd: Function
+  // },
   data() {
     return {
       beer: null,
+      favorites: [],
       beerIcon: '',
       rating: 0
-
     };
   },
   components: {
@@ -40,8 +43,14 @@ export default {
   },
   methods: {
     handleAdd() {
-      // change for favoriting method
-      console.log(1);
+      let oneBeer = { name: this.beer.name };
+      return api.addFavorite(oneBeer)
+        .then(saved => {
+          console.log(saved);
+          this.favorites.push(saved);
+          // this.$router.push('/profile');
+          // alert('beer added to your profile!');
+        });
     },
     handleRate() {
       console.log();

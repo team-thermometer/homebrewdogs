@@ -55,6 +55,11 @@ export default {
     return fetch('/api/favorites', getOptions('GET'))
       .then(response => response.json());
   },
+  addFavorite(name) {
+    // console.log('addFavorite', name);
+    return fetch('/api/favorites', getOptions('POST', name))
+      .then(response => response.json());
+  },
   getBeers() {
     return fetch(`https://api.punkapi.com/v2/beers`, getOptions('GET'))
       .then(response => response.json());      
