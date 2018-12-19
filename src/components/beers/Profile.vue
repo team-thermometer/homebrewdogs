@@ -3,8 +3,8 @@
         <h2>
             Saved List!
         </h2>
-        <div v-for="favorite in favorites"
-            :key="favorite">
+        <div v-for="(favorite, index) in favorites"
+            :key="index">
         {{favorite.name}}
         </div>
     </div>
