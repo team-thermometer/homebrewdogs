@@ -51,6 +51,7 @@ export default {
       return api.addFavorite(oneBeer)
         .then(saved => {
           console.log(saved);
+          // if not the same push to favorites
           this.favorites.push(saved);
           // this.$router.push('/profile');
           // alert('beer added to your profile!');

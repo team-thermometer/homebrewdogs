@@ -38,7 +38,7 @@ export default {
     handleDelete() {
       console.log(this.favorites);
       // change this from deleting first item to items id 
-      api.deleteFavorite()
+      api.deleteFavorite(this.favorites[0].id)
         .then(() => {
           alert('Deleted beer');
           this.$router.go();
