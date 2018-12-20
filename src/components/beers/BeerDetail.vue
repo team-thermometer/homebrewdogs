@@ -22,6 +22,7 @@ import api from '../../services/api';
 import { StarRating } from 'vue-rate-it';
 
 export default {
+
   data() {
     return {
       beer: null,
@@ -59,8 +60,9 @@ export default {
     },
     handleRate() {
       console.log('rating', this.rating);
+      console.log('favorites', this.favorites[0].id);
 
-      let rating = { rating: this.rating, favoriteId: this.beer.id };
+      let rating = { rating: this.rating, favoriteId: this.favorites[0].id };
       return api.addRating(rating)
         .then(savedRating => {
           this.ratings.push(savedRating);
