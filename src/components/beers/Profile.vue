@@ -1,22 +1,29 @@
 <template>
-    <div>
-        <h2>
-            Saved List!
-        </h2>
-        <div v-for="(favorite, index) in favorites"
-            :key="index">
-        {{favorite.name}}
-        <button @click="handleDelete">X</button>
-        <p>
-            <textarea placeholder="leave a comment about this beer"></textarea>
-        </p>
-            <button @click="handleComment">Submit</button>
-        </div>
-    </div>
+  <div>
+    <h2>
+        Saved List!
+    </h2>
+      <div v-for="(favorite, index) in favorites"
+          :key="index">
+      <!-- <button @click="handleDelete">X</button> -->
+      <p>
+        <textarea placeholder="leave a comment about this beer"></textarea>
+      </p>
+        <button @click="handleComment">Submit</button>
+      </div>
+      <ul>
+        <Favorite v-for="favorite in favorites" 
+          :key="favorite.id"
+          :favorite="favorite"
+        />
+      </ul>
+  </div>
 </template>
 
 <script>
 import api from '../../services/api';
+import Favorite from './Favorite';
+
 export default {
 
   data() {
@@ -24,6 +31,9 @@ export default {
       favorites: null, 
       beer: null
     };
+  },
+  components: {
+    Favorite
   },
   created() {
     api.getFavorites()
@@ -34,13 +44,6 @@ export default {
       });
   },
   methods: {
-    handleDelete() {
-      api.deleteFavorite(this.favorites[0].id)
-        .then(() => {
-          alert('Deleted beer');
-          this.$router.go();
-        });
-    },
     handleComment() {
       console.log('comment', this.comment);
 
@@ -54,6 +57,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="postcss" scoped>
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
 </style>
