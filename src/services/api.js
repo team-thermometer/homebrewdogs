@@ -19,11 +19,7 @@ const getOptions = (method, data) => {
 };
 
 export default {
-  
-  // test() {
-  //   return fetch('https://api.punkapi.com/v2/beers')
-  //     .then(response => response.json());
-  // },
+
   setToken(t) {
     token = t;
   },
@@ -55,16 +51,47 @@ export default {
           });
       });
   },
+  getFavorites() {
+    return fetch('/api/favorites', getOptions('GET'))
+      .then(response => response.json());
+  },
+  addFavorite(name) {
+    // console.log('addFavorite', name);
+    return fetch('/api/favorites', getOptions('POST', name))
+      .then(response => response.json());
+  },
   getBeers() {
     return fetch('https://api.punkapi.com/v2/beers', getOptions('GET'))
-      .then(response => response.json());      
+      .then(response => response.json());
   },
   getBeer(id) {
     return fetch(`https://api.punkapi.com/v2/beers/${id}`)
       .then(response => response.json());
   },
-  getBeerByKeyword(keyword) {
-    return fetch(`https://api.punkapi.com/v2/beers?beer_name=${keyword}`)
+  getBeerByKeyword(keyword, page = 1) {
+    return fetch(`https://api.punkapi.com/v2/beers?beer_name=${keyword}&page=${page}`)
+      .then(response => response.json());
+  },
+  getRandomBeer() {
+    return fetch('https://api.punkapi.com/v2/beers/random')
+      .then(response => response.json());
+  },  
+  addComment(comment) {
+    return fetch('/api/favorites', getOptions('PUT', comment));
+  },
+  addRating(rating) {
+    return fetch('/api/ratings', getOptions('POST', rating));
+  },
+  deleteFavorite(id) {
+
+    // console.log(id);
+    return fetch(`/api/favorites/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+      },
+    })
       .then(response => response.json());
   }
 };

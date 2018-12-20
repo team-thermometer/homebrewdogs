@@ -16,5 +16,12 @@ export default {
 </script>
 
 <style scoped>
+nav {
+  display: flex;
+}
+.profile {
+    margin-top: -170px;
+    padding-right: 40px;
 
+}
 </style>

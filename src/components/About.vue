@@ -31,34 +31,18 @@
             <p>Drew is an avid reader, web developer, economist, snowboarder and basketball player. Drew's favorite beer is Fresh Squeezed IPA</p>
         </div>
     </section>
-    </div>
+  </div>
 </template>
 
 <style scoped>
-/* .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: column;
-    height: 100%;
-    padding: 30px;
-} */
 section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     max-width: 100vw;
-    /* height: 100%; */
-    /* max-height: 100vh; */
 }
 .profile {
 vertical-align: bottom;
 width: 100%;
 height: auto;
 }  
-/* div {
-display: flex;
-flex-wrap: wrap;
-align-items: flex-start;
-flex-direction: column;
-} */
 </style>
