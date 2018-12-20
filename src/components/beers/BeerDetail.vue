@@ -42,6 +42,7 @@ export default {
   methods: {
     handleAdd() {
       let oneBeer = { 
+        id: this.beer.id,
         name: this.beer.name,
         abv: this.beer.abv,
         ibu: this.beer.ibu
