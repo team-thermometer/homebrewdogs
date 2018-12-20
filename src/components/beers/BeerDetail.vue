@@ -83,6 +83,13 @@ img {
 }
 h2 {
   display: inline;
+  padding:0px;
+}
+p{
+  padding: 20px;
+  list-style: none;
+  align-content: center;
+  padding-left: 0;
 }
 .checkmark {
   display: inline;

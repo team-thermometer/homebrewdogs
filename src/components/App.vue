@@ -2,11 +2,11 @@
   <div id="app">
     <Header/>
     <nav v-if="user">
-        <RouterLink to="/profile" class="profile">Profile</RouterLink>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/beers">Beers List</RouterLink>
-        <RouterLink to="/about">About Us</RouterLink>
-        <a href="#" @click="handleLogout">Logout</a>
+        <RouterLink class="nav" to="/profile">Profile</RouterLink>
+        <RouterLink class="nav" to="/">Home</RouterLink>
+        <RouterLink class="nav" to="/beers">Beers List</RouterLink>
+        <RouterLink class="nav" to="/about">About Us</RouterLink>
+        <a class="nav" href="#" @click="handleLogout">Logout</a>
     </nav>
 
     <main class="content">
@@ -87,12 +87,20 @@ main {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  font-size: 1.2em; 
 }
 nav {
   display:flex;
   justify-content: space-evenly;
 }
-
+.nav {
+  text-decoration: none;
+  color: #30313A;
+  font-weight: bold;
+}
+.nav:hover {
+  color:blue;
+}
 .content {
     min-height:73vh;
 }
