@@ -2,13 +2,14 @@
   <section v-if="beer">
     <h2>{{beer.name}}</h2>
     <p class="checkmark"
-        @click="handleAdd">✓</p>
-    <star-rating class="stars"
+       @click="handleAdd">✓</p>
+    <star-rating v-if="favorites[0]"
+                class="stars"
                 :increment="0.5"
                 v-model="rating"
                 @click.native="handleRate"></star-rating>
     {{rating}}
-    <p>{{beer.description}}
+    <p>{{beer.description}}</p>
     <p>ABV: {{beer.abv}}</p>
     <p>IBU: {{beer.ibu}}</p>
     <p>First brewed: {{beer.first_brewed}}</p>

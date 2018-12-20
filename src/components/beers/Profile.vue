@@ -37,7 +37,7 @@ export default {
     handleDelete() {
       api.deleteFavorite(this.favorites[0].id)
         .then(() => {
-          alert('deleted: ' + this.favorites[0].name);
+          alert('Deleted beer');
           this.$router.go();
         });
     },
