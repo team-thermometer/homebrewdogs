@@ -3,8 +3,9 @@
         <h2>
             Saved List!
         </h2>
-        <h3 v-if="!favorites[0]"> Go out and try some BrewDog beers!</h3>
-        <div v-for="(favorite, index) in favorites"
+        <h3 v-if="favorites < 1"> Go out and try some BrewDog beers!</h3>
+        <div
+            v-for="(favorite, index) in favorites"
             :key="index">
         {{favorite.name}}
         <button @click="handleDelete">X</button>
