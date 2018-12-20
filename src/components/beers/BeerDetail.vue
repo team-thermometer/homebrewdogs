@@ -41,7 +41,11 @@ export default {
   },
   methods: {
     handleAdd() {
-      let oneBeer = { name: this.beer.name };
+      let oneBeer = { 
+        name: this.beer.name,
+        abv: this.beer.abv,
+        ibu: this.beer.ibu
+      };
       return api.addFavorite(oneBeer)
         .then(saved => {
           console.log(saved);
