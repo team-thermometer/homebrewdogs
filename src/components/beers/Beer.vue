@@ -1,9 +1,9 @@
 <template>
   <li v-if="beer">
-    <RouterLink :to="`/beers/${beer.id}`">
+    <RouterLink class="router" :to="`/beers/${beer.id}`">
       <h4>{{beer.name}}</h4>
     </RouterLink>
-      <p>{{beer.description}}</p>
+      <p>{{beer.tagline}}</p>
   </li>
 </template>
 
@@ -19,11 +19,21 @@ export default {
 li {
   text-align: left;
   list-style: none;
+  margin: 10px;
 }
 h4 {
   margin: 0px;
+  text-align: center;
 }
 p {
   margin: 0px;
+  text-align: center;
+}
+.router {
+  text-decoration: none;
+  color: gray;
+}
+.router:hover {
+  color:blue;
 }
 </style>
