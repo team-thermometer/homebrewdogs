@@ -23,11 +23,11 @@ import { StarRating } from 'vue-rate-it';
 export default {
   data() {
     return {
-      profile: null,
       beer: null,
       favorites: [],
       beerIcon: '',
-      rating: 0
+      rating: 0,
+      ratings: []
     };
   },
   components: {
@@ -38,8 +38,6 @@ export default {
       .then(beer => {
         this.beer = beer[0];
       });
-    this.profile = JSON.parse(window.localStorage.getItem('profile'));
-    console.log('profile', this.profile);
   },
   methods: {
     handleAdd() {
@@ -55,7 +53,7 @@ export default {
     handleRate() {
       console.log('rating', this.rating);
 
-      let rating = { rating: this.rating, profileId: this.profile.id, favoriteId: this.beer.id };
+      let rating = { rating: this.rating, favoriteId: this.beer.id };
       return api.addRating(rating)
         .then(savedRating => {
           this.ratings.push(savedRating);
@@ -68,7 +66,7 @@ export default {
 
 <style scoped>
 section {
-  margin: 0em 20em 0em 20em;
+  margin: 0px 100px;
 }
 img {
   width: 172px;
@@ -85,6 +83,6 @@ h2 {
   cursor: pointer;
 }
 .stars {
-  margin-left: 250px;
+  margin-left: 200px;
 }
 </style>
