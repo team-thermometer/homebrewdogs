@@ -1,8 +1,8 @@
 <template>
-    <section>
-        <div class="container">
-        <div>
+    <div>
         <h1>About Us</h1>
+    <section>
+        <div>
             <h3>Cari Palazzolo</h3>
             <img class="profile" src= "../assets/caripalazzolo.jpg">
             <p>
@@ -24,34 +24,35 @@
             <img class="profile" src= "../assets/AboutMePic.jpeg">
             <p>Aaron is a climber, traveler, software developer, and amateur chef. He has actually visited the BrewDog main brewery in Edinburgh, Scotland. His favorite BrewDog beer is Punk IPA.
             </p>
+        </div>
+        <div>
             <h3>Drew Van Valkenburg</h3>
             <img class="profile" src= "../assets/profile_pic.jpg">
             <p>Drew is an avid reader, web developer, economist, snowboarder and basketball player. Drew's favorite beer is Fresh Squeezed IPA</p>
         </div>
-        </div>
     </section>
+    </div>
 </template>
 
 <style scoped>
-.container {
+/* .container {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     flex-direction: column;
     height: 100%;
     padding: 30px;
+} */
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 100vw;
+    /* height: 100%; */
+    /* max-height: 100vh; */
 }
-/* section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: column;
-    height: 100%;
-    max-height: 100vh;
-}*/
 .profile {
 vertical-align: bottom;
-width: 300px;
+width: 100%;
 height: auto;
 }  
 /* div {
