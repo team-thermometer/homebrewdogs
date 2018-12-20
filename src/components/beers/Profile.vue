@@ -3,6 +3,7 @@
         <h2>
             Saved List!
         </h2>
+        <h3 v-if="!favorites[0]"> Go out and try some BrewDog beers!</h3>
         <div v-for="(favorite, index) in favorites"
             :key="index">
         {{favorite.name}}
@@ -35,7 +36,9 @@ export default {
   },
   methods: {
     handleDelete() {
-      api.deleteFavorite(this.favorites[0].id)
+      console.log(this.favorites);
+      // change this from deleting first item to items id 
+      api.deleteFavorite()
         .then(() => {
           alert('Deleted beer');
           this.$router.go();
@@ -43,7 +46,6 @@ export default {
     },
     handleComment() {
       console.log('comment', this.comment);
-
       let comment = { comment: this.comment };
       return api.addComment(comment)
         .then(comment => {
