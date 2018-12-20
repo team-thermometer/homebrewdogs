@@ -10,7 +10,7 @@
         <p>
             <textarea placeholder="leave a comment about this beer"></textarea>
         </p>
-            <button @click="handleSubmit">Submit</button>
+            <button @click="handleComment">Submit</button>
         </div>
     </div>
 </template>
@@ -41,8 +41,14 @@ export default {
           this.$router.go();
         });
     },
-    handleSubmit() {
-      console.log(1);
+    handleComment() {
+      console.log('comment', this.comment);
+
+      let comment = { comment: this.comment };
+      return api.addComment(comment)
+        .then(comment => {
+          this.comment.push(comment);
+        });
     }
   }
 };

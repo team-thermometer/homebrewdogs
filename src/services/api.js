@@ -75,11 +75,15 @@ export default {
   getRandomBeer() {
     return fetch('https://api.punkapi.com/v2/beers/random')
       .then(response => response.json());
+  },  
+  addComment(comment) {
+    return fetch('/api/favorites', getOptions('PUT', comment));
   },
   addRating(rating) {
     return fetch('/api/ratings', getOptions('POST', rating));
   },
   deleteFavorite(id) {
+
     // console.log(id);
     return fetch(`/api/favorites/${id}`, {
       method: 'DELETE',
