@@ -22,6 +22,13 @@
               </p>
             </div>
         </div>
+        <ul v-for="favorite in favorites"
+          :key="favorite.favoriteId">
+          <li>Favorites count: {{favorite.count}}</li>
+          <li>Favorites "average" ABV: {{favorite.averageAbv}}</li>
+          <li>Favorites min ABV: {{favorite.minAbv}}</li>
+          <li>Favorites max ABV: {{favorite.maxAbv}}</li>
+        </ul>
     </div>
 </template>
 
@@ -31,7 +38,8 @@ export default {
   data() {
     return {
       beers: Object,
-      random: Object
+      random: Object,
+      favorites: null
     };
   },
   components: {
@@ -39,6 +47,8 @@ export default {
   created() {
     api.getBeers()
       .then(beers => this.beers = beers.slice(2, 12));
+    api.getFavStats()
+      .then(favorites => this.favorites = favorites);
   },
   methods: {
     randomBeer() {

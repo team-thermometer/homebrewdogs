@@ -93,5 +93,9 @@ export default {
       },
     })
       .then(response => response.json());
-  }
+  },
+  getFavStats() {
+    return fetch('/api/favorites/stats', getOptions('GET'))
+      .then(response => response.json());
+  },
 };
