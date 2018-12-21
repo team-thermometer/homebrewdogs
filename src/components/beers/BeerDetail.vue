@@ -9,6 +9,7 @@
       v-model="rating"
       @click.native="handleRate"></star-rating>
     <p>{{beer.description}}</p>
+    <img :src="beer.image_url">
     <p>ABV: {{beer.abv}}</p>
     <p>IBU: {{beer.ibu}}</p>
     <p>First brewed: {{beer.first_brewed}}</p>
@@ -89,5 +90,8 @@ p{
   align-items: center;
   justify-content: center;
   padding-top: 20px;
+}
+img {
+  width: 50px;
 }
 </style>
