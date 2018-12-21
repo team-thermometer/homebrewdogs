@@ -83,8 +83,6 @@ export default {
     return fetch('/api/ratings', getOptions('POST', rating));
   },
   deleteFavorite(id) {
-
-    // console.log(id);
     return fetch(`/api/favorites/${id}`, {
       method: 'DELETE',
       headers: {
