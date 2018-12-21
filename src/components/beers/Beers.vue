@@ -1,7 +1,8 @@
 <template>
   <ul v-if="search">
     <p>
-    <button class="search" @click="showModal = true"> Search
+    <button class="search" @click="showModal = true">
+      Search
     </button>
     </p>
     <Modal v-if="showModal" :onClose="() => showModal = false">
@@ -98,11 +99,10 @@ li {
 }
 .search {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 18px;
+  border-radius: 12px;
 }
 button:hover {
-  background-color: white; 
-  color: black; 
-  border: 2px solid gray;
+  background: #00afdb;
 }
 </style>
