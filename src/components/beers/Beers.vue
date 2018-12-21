@@ -25,6 +25,7 @@ import Modal from '../shared/Modal';
 import BeerSearch from './BeerSearch';
 
 export default {
+  name: 'beers',
   data() {
     return {
       beers: null,
@@ -39,18 +40,34 @@ export default {
     BeerSearch,
     Modal,
   },
+  created() {
+    api.getBeers()
+      .then(beers => this.beers = beers);
+  },
+  watch: {
+    $route(newRoute, oldRoute) {
+      const newSearch = newRoute.query.search;
+      const oldSearch = oldRoute.query.search;
+      let newPage = newRoute.query.page;
+      const oldPage = oldRoute.query.page;
+      if(newSearch === oldSearch && newPage === oldPage) return;
+      if(newSearch !== oldSearch) {
+        newPage = 1;
+      }
+      this.search = decodeURIComponent(newSearch);
+      this.page = newPage;
+      this.handleSearch();
+    }
+  },
   methods: {
     handleSearch() {
-      console.log('HANDLE SEARCH');
       this.recordPage();
       this.searchBeers();
       this.showModal = false;
     },
     searchBeers() {
-      console.log('orange', this.search);
       api.getBeerByKeyword(this.search, this.page)
         .then(beers => {
-          console.log('beers', beers);
           return this.beers = beers;
         });
     },
@@ -66,52 +83,26 @@ export default {
         }
       });
     }
-  },
-  watch: {
-    $route(newRoute, oldRoute) {
-      const newSearch = newRoute.query.search;
-      const oldSearch = oldRoute.query.search;
-      let newPage = newRoute.query.page;
-      const oldPage = oldRoute.query.page;
-      if(newSearch === oldSearch && newPage === oldPage) return;
-      if(newSearch !== oldSearch) {
-        newPage = 1;
-      }
-      this.search = decodeURIComponent(newSearch);
-      console.log('banana', this.search);
-      this.page = newPage;
-      this.handleSearch();
-    }
-  },
-  created() {
-    api.getBeers()
-      .then(beers => this.beers = beers);
   }
 };
 </script>
 
 <style lang="postcss" scoped>
-
 ul {
   list-style: none;
   align-content: center;
   padding-left: 0;
-  /* margin: 0em 20em 0em 20em; */
-  }
-
+}
 li {
   padding: 20px;
 }
-
 .search {
   cursor: pointer;
   font-size: 12px;
 }
-
 button:hover {
   background-color: white; 
   color: black; 
   border: 2px solid gray;
 }
-
 </style>

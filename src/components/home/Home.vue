@@ -74,7 +74,6 @@ export default {
     randomBeer() {
       return api.getRandomBeer()
         .then(random => {
-          console.log(random[0].name);
           return this.random = random;
         });
     }

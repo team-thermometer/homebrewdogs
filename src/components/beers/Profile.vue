@@ -40,10 +40,8 @@ export default {
   methods: {
     handleComment(old, favorite) {
       const index = this.favorites.indexOf(old);
-      console.log('index', index);
       return api.addComment(favorite.id, favorite)
         .then(commentedFavorite => {
-          console.log('commentedFavorite', commentedFavorite);
           this.favorites.splice(index, 1, commentedFavorite);
         });
     }
