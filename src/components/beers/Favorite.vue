@@ -58,5 +58,7 @@ export default {
 </script>
 
 <style>
-
+li:hover {
+ background: #00afdb;
+}
 </style>

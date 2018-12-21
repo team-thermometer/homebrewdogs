@@ -57,7 +57,6 @@ ul {
   padding-left: 0px;
 }
 .savedlist {
-  background-color:#00afdb;
   padding: 2rem;
   text-align: center;
   max-width: 100%;
