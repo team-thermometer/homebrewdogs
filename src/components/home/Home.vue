@@ -27,11 +27,9 @@
     </div>
     <div class="random">
       <button @click="randomBeer()">Get random Beer!</button>
-      <div v-if="random[0]" class="beerdiv">
-        <div>
+      <div v-if="random[0]" class="random">
         <img :src="random[0].image_url" class="random_image">
         {{random[0].name}}!
-        </div>
         <p>
         Pairs well with: {{random[0].food_pairing[0]}}
         </p>
@@ -84,17 +82,13 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-.list {
-  position: relative;
-  height: 150px;
-  &:hover {
+.list:hover {
   img {
     transform: scale(1.3);
   }
 }
-}
 .list {
-  padding: 0px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
