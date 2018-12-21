@@ -2,9 +2,9 @@
   <div id="app">
     <Header/>
     <nav v-if="user">
-        <RouterLink class="nav" to="/profile">Profile</RouterLink>
         <RouterLink class="nav" to="/">Home</RouterLink>
         <RouterLink class="nav" to="/beers">Beers List</RouterLink>
+        <RouterLink class="nav" to="/profile">Profile</RouterLink>
         <RouterLink class="nav" to="/about">About Us</RouterLink>
         <a class="nav" href="#" @click="handleLogout">Logout</a>
     </nav>
