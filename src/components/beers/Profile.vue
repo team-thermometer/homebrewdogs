@@ -3,18 +3,11 @@
     <h2>
         Saved List!
     </h2>
-      <div v-for="(favorite, index) in favorites"
-          :key="index">
-      <!-- <button @click="handleDelete">X</button> -->
-      <p>
-        <textarea placeholder="leave a comment about this beer"></textarea>
-      </p>
-        <button @click="handleComment">Submit</button>
-      </div>
       <ul>
         <Favorite v-for="favorite in favorites" 
           :key="favorite.id"
           :favorite="favorite"
+          :onEdit="handleComment"
         />
       </ul>
   </div>
@@ -44,13 +37,13 @@ export default {
       });
   },
   methods: {
-    handleComment() {
-      console.log('comment', this.comment);
-
-      let comment = { comment: this.comment };
-      return api.addComment(comment)
-        .then(comment => {
-          this.comment.push(comment);
+    handleComment(old, favorite) {
+      const index = this.favorites.indexOf(old);
+      console.log('index', index);
+      return api.addComment(favorite.id, favorite)
+        .then(commentedFavorite => {
+          console.log('commentedFavorite', commentedFavorite);
+          this.favorites.splice(index, 1, commentedFavorite);
         });
     }
   }

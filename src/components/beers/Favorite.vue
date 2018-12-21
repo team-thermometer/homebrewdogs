@@ -1,8 +1,20 @@
 <template>
   <li>
     <h3>
-      {{favorite.name}}
+      {{updatedFavorite.name}}
     </h3>
+    <p v-if="favorite.comments"> 
+      {{favorite.comments}}
+    </p>
+    <button @click="() => show = !show">Comment</button>
+    <div v-if="show">
+      <form @submit.prevent="onEdit(favorite, updatedFavorite)">
+        <p>
+          <textarea v-model="updatedFavorite.comments" placeholder="leave a comment about this beer"></textarea>
+        </p>
+        <button @click="() => show = !show">Submit</button>
+      </form>
+    </div>
     <button @click="handleDelete" class="delete">Delete</button>
   </li>
 </template>
@@ -12,7 +24,21 @@ import api from '../../services/api';
 
 export default {
   props: {
-    favorite: null
+    favorite: null,
+    onEdit: Function
+  },
+  data() {
+    const update = this.favorite || {};
+    return {
+      show: false,
+      updatedFavorite: { 
+        abv: update.abv || '',
+        comments: update.comments || '',
+        ibu: update.ibu || '',
+        id: update.id || '',
+        name: update.name || ''
+      }
+    };
   },
   created() {
     api.getFavorites()
