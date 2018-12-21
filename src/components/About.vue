@@ -6,8 +6,7 @@
             <h3>Cari Palazzolo</h3>
             <img class="profile" src= "../assets/caripalazzolo.jpg">
             <p>
-            Cari is a full-stack developer currently training at Alchemy Code Lab. She has backgrounds in QA/QC, Graphic Design, Visual Art, and Music. 
-            When she’s not writing code she enjoys biking around Portland, going on hikes and sipping delicious IPA’s. 
+            Cari is a full-stack developer who enjoys biking around Portland, going on hikes and sipping delicious IPA’s. 
             Her favorite Brewdog beer is the Punk IPA.
             </p>
         </div>
