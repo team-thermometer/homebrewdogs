@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     handleDelete() {
-      // console.log(this.favorite.id);
       api.deleteFavorite(this.favorite.id)
         .then(() => {
           alert('Deleted beer');

@@ -41,16 +41,13 @@ export default {
   },
   methods: {
     handleSearch() {
-      console.log('HANDLE SEARCH');
       this.recordPage();
       this.searchBeers();
       this.showModal = false;
     },
     searchBeers() {
-      console.log('orange', this.search);
       api.getBeerByKeyword(this.search, this.page)
         .then(beers => {
-          console.log('beers', beers);
           return this.beers = beers;
         });
     },
@@ -78,7 +75,6 @@ export default {
         newPage = 1;
       }
       this.search = decodeURIComponent(newSearch);
-      console.log('banana', this.search);
       this.page = newPage;
       this.handleSearch();
     }
