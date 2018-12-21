@@ -75,8 +75,9 @@ export default {
     return fetch('https://api.punkapi.com/v2/beers/random')
       .then(response => response.json());
   },  
-  addComment(comment) {
-    return fetch('/api/favorites', getOptions('PUT', comment));
+  addComment(id, favorite) {
+    return fetch(`/api/favorites/${id}`, getOptions('PUT', favorite))
+      .then(response => response.json());
   },
   addRating(rating) {
     return fetch('/api/ratings', getOptions('POST', rating));
@@ -92,5 +93,9 @@ export default {
       },
     })
       .then(response => response.json());
-  }
+  },
+  getFavStats() {
+    return fetch('/api/favorites/stats', getOptions('GET'))
+      .then(response => response.json());
+  },
 };

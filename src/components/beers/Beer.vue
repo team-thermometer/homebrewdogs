@@ -34,6 +34,6 @@ p {
   color: gray;
 }
 .router:hover {
-  color:blue;
+  color:#00afdb;
 }
 </style>
