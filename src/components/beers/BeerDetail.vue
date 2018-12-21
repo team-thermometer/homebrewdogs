@@ -8,12 +8,10 @@
                 :increment="0.5"
                 v-model="rating"
                 @click.native="handleRate"></star-rating>
-    {{rating}}
     <p>{{beer.description}}</p>
     <p>ABV: {{beer.abv}}</p>
     <p>IBU: {{beer.ibu}}</p>
     <p>First brewed: {{beer.first_brewed}}</p>
-    
   </section>
 </template>
 
@@ -51,16 +49,10 @@ export default {
       };
       return api.addFavorite(oneBeer)
         .then(saved => {
-          console.log(saved);
           this.favorites.push(saved);
-          // this.$router.push('/profile');
-          // alert('beer added to your profile!');
         });
     },
     handleRate() {
-      console.log('rating', this.rating);
-      console.log('favorites', this.favorites[0].id);
-
       let rating = { rating: this.rating, favoriteId: this.favorites[0].id };
       return api.addRating(rating)
         .then(savedRating => {

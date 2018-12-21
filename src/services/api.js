@@ -56,7 +56,6 @@ export default {
       .then(response => response.json());
   },
   addFavorite(name) {
-    // console.log('addFavorite', name);
     return fetch('/api/favorites', getOptions('POST', name))
       .then(response => response.json());
   },

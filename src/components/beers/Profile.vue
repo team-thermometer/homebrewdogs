@@ -3,6 +3,7 @@
     <h2>
         Saved List!
     </h2>
+    <h2 v-if="favorites < 1"> Go out and try some BrewDog beers!</h2>
       <ul>
         <Favorite v-for="favorite in favorites" 
           :key="favorite.id"

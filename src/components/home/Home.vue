@@ -103,7 +103,7 @@ img {
   background: #00afdb;
 }
 .random_image {
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 table {
   width: 100%;
