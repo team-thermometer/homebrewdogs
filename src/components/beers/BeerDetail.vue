@@ -67,16 +67,11 @@ export default {
 section {
   margin: 0px 100px;
 }
-img {
-  width: 172px;
-  height: 558px;
-}
 h2 {
   display: inline;
-  padding:0px;
+  padding: 0px;
 }
 p{
-  padding: 20px;
   list-style: none;
   align-content: center;
   padding-left: 0;
@@ -89,6 +84,10 @@ p{
   cursor: pointer;
 }
 .stars {
-  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
 }
 </style>
