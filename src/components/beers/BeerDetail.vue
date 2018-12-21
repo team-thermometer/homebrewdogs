@@ -2,12 +2,12 @@
   <section v-if="beer">
     <h2>{{beer.name}}</h2>
     <p class="checkmark"
-       @click="handleAdd">✓</p>
+      @click="handleAdd">✓</p>
     <star-rating v-if="favorites[0]"
-                class="stars"
-                :increment="0.5"
-                v-model="rating"
-                @click.native="handleRate"></star-rating>
+      class="stars"
+      :increment="0.5"
+      v-model="rating"
+      @click.native="handleRate"></star-rating>
     <p>{{beer.description}}</p>
     <p>ABV: {{beer.abv}}</p>
     <p>IBU: {{beer.ibu}}</p>
@@ -20,7 +20,6 @@ import api from '../../services/api';
 import { StarRating } from 'vue-rate-it';
 
 export default {
-
   data() {
     return {
       beer: null,
