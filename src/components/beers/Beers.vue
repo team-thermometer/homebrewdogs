@@ -91,26 +91,27 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-body {
- @media screen and (min-width: 480px) {
-}
-}
+
 ul {
   list-style: none;
   align-content: center;
   padding-left: 0;
   /* margin: 0em 20em 0em 20em; */
   }
+
 li {
   padding: 20px;
 }
+
 .search {
   cursor: pointer;
   font-size: 12px;
 }
+
 button:hover {
-    background-color: white; 
-    color: black; 
-    border: 2px solid gray;
+  background-color: white; 
+  color: black; 
+  border: 2px solid gray;
 }
+
 </style>

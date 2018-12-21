@@ -31,7 +31,7 @@ p {
 }
 .router {
   text-decoration: none;
-  color: gray;
+  color: #2c3e50;
 }
 .router:hover {
   color:#00afdb;

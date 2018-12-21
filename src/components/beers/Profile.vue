@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="savedlist">
     <h2>
         Saved List!
     </h2>
@@ -55,5 +55,13 @@ export default {
 ul {
   list-style: none;
   padding-left: 0px;
+}
+.savedlist {
+  background-color:#00afdb;
+  padding: 2rem;
+  text-align: center;
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
 }
 </style>
