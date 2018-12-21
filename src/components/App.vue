@@ -99,7 +99,7 @@ nav {
   font-weight: bold;
 }
 .nav:hover {
-  color:blue;
+  color:#00afdb;
 }
 .content {
     min-height:73vh;
