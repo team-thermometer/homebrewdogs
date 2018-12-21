@@ -71,7 +71,7 @@ img {
   justify-content: center;
 }
 .random_image {
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 
 </style>

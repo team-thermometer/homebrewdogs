@@ -1,14 +1,15 @@
 <template>
     <div>
-        <h2>
+        <h1>
             Saved List!
-        </h2>
-        <h3 v-if="favorites < 1"> Go out and try some BrewDog beers!</h3>
+        </h1>
+        <h2 v-if="favorites < 1"> Go out and try some BrewDog beers!</h2>
         <div
             v-for="(favorite, index) in favorites"
-            :key="index">
+            :key="index"
+            class="favorite">
         {{favorite.name}}
-        <button @click="handleDelete">X</button>
+        <button @click="handleDelete" class="delete">X</button>
         <p>
             <textarea placeholder="leave a comment about this beer"></textarea>
         </p>
@@ -57,6 +58,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>

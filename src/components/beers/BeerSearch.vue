@@ -1,6 +1,7 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <input v-model="keyword">
+      <h1>Search Beers</h1>
+        Name: <input v-model="keyword">
         <button>Search</button>
     </form>
 </template>
@@ -35,6 +36,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>

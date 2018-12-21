@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal {
   position: fixed;
   top: 0; left: 0;
