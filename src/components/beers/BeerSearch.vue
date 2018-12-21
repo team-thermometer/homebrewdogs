@@ -36,6 +36,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+body {
+  margin: 0px;
+}
 
 </style>
