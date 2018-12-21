@@ -25,6 +25,7 @@ import Modal from '../shared/Modal';
 import BeerSearch from './BeerSearch';
 
 export default {
+  name: 'beers',
   data() {
     return {
       beers: null,
@@ -38,6 +39,25 @@ export default {
     Beer,
     BeerSearch,
     Modal,
+  },
+  created() {
+    api.getBeers()
+      .then(beers => this.beers = beers);
+  },
+  watch: {
+    $route(newRoute, oldRoute) {
+      const newSearch = newRoute.query.search;
+      const oldSearch = oldRoute.query.search;
+      let newPage = newRoute.query.page;
+      const oldPage = oldRoute.query.page;
+      if(newSearch === oldSearch && newPage === oldPage) return;
+      if(newSearch !== oldSearch) {
+        newPage = 1;
+      }
+      this.search = decodeURIComponent(newSearch);
+      this.page = newPage;
+      this.handleSearch();
+    }
   },
   methods: {
     handleSearch() {
@@ -63,40 +83,16 @@ export default {
         }
       });
     }
-  },
-  watch: {
-    $route(newRoute, oldRoute) {
-      const newSearch = newRoute.query.search;
-      const oldSearch = oldRoute.query.search;
-      let newPage = newRoute.query.page;
-      const oldPage = oldRoute.query.page;
-      if(newSearch === oldSearch && newPage === oldPage) return;
-      if(newSearch !== oldSearch) {
-        newPage = 1;
-      }
-      this.search = decodeURIComponent(newSearch);
-      this.page = newPage;
-      this.handleSearch();
-    }
-  },
-  created() {
-    api.getBeers()
-      .then(beers => this.beers = beers);
   }
 };
 </script>
 
 <style lang="postcss" scoped>
-body {
- @media screen and (min-width: 480px) {
-}
-}
 ul {
   list-style: none;
   align-content: center;
   padding-left: 0;
-  /* margin: 0em 20em 0em 20em; */
-  }
+}
 li {
   padding: 20px;
 }
@@ -105,8 +101,8 @@ li {
   font-size: 12px;
 }
 button:hover {
-    background-color: white; 
-    color: black; 
-    border: 2px solid gray;
+  background-color: white; 
+  color: black; 
+  border: 2px solid gray;
 }
 </style>
