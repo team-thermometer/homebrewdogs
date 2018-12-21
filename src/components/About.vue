@@ -14,7 +14,7 @@
         <h3>Dyanna "Dee" Tolman</h3>
         <img class="profile" src= "../assets/profile.jpg">
         <p>
-          Dyanna is currently a student at Alchemy Code Lab and originally from Singapore. She enjoys traveling, trying new restaurants and spending time with her family.
+          Dyanna is currently a student at Alchemy Code Lab. She enjoys traveling, trying new restaurants and spending time with her family.
           Although she prefers sipping on Kombucha, she thinks Electric India from Brewdog sounds amazing. 
         </p>
       </div>
@@ -43,6 +43,18 @@ section {
   max-width: 100vw;
 }
 .profile {
+  vertical-align: bottom;
+  width: 100%;
+  height: auto;
+}  
+h3 {
+  margin:0px;
+}
+h1 {
+  background-color: #00afdb;
+}
+p{
+  padding:10px;
   vertical-align: bottom;
   width: 100%;
   height: auto;
