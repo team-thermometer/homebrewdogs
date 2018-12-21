@@ -7,14 +7,18 @@
     <Modal v-if="showModal" :onClose="() => showModal = false">
       <BeerSearch :onSearch="handleSearch" :search="search"/>
     </Modal>
-    <Beer v-for="beer in beers"
-      :key="beer.id"
-      :beer="beer"/>
-    <p>
-      <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
-      Searching for &quot;{{ search }}&quot; Page {{page}}
-      <button @click="handlePage(1)">Next</button>
-    </p>
+    <img v-if="search === 'undefined' || page === 'undefined'"
+         src="https://media1.fdncms.com/clevescene/imager/u/original/13591409/brewdog_bar_coming_to_cleveland.jpg">
+    <section v-else>
+      <Beer v-for="beer in beers"
+        :key="beer.id"
+        :beer="beer"/>
+      <p>
+        <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
+        Searching for &quot;{{ search }}&quot; Page {{page}}
+        <button @click="handlePage(1)">Next</button>
+      </p>
+    </section>
   </ul>
 </template>
 
