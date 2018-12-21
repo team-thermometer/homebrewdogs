@@ -1,6 +1,6 @@
 <template>
   <ul v-if="search">
-    <p>
+    <p class="search-btn">
     <button class="search" @click="showModal = true">
       Search
     </button>
@@ -107,6 +107,14 @@ li {
   border-radius: 12px;
 }
 button:hover {
+  background: gold;
+}
+p.search-btn {
   background: #00afdb;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+img {
+  width: 500px;
 }
 </style>
