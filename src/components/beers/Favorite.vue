@@ -15,7 +15,7 @@
         <button @click="() => show = !show">Submit</button>
       </form>
     </div>
-    <button @click="handleDelete" class="delete">Delete</button>
+    <button @click="handleDelete" class="delete">Delete Beer</button>
   </li>
 </template>
 
@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     handleDelete() {
-      // console.log(this.favorite.id);
       api.deleteFavorite(this.favorite.id)
         .then(() => {
           alert('Deleted beer');
@@ -57,6 +56,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="postcss" scoped>
+li:hover {
+  background: #00afdb;
+}
 </style>
