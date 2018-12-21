@@ -9,7 +9,7 @@
       <BeerSearch :onSearch="handleSearch" :search="search"/>
     </Modal>
     <img v-if="search === 'undefined' || page === 'undefined'"
-         src="https://media1.fdncms.com/clevescene/imager/u/original/13591409/brewdog_bar_coming_to_cleveland.jpg">
+         src="https://marketingweek.imgix.net/content/uploads/2016/05/26124706/Brewdog_masthead_1.png?auto=compress,format,&crop=faces,entropy,edges&fit=crop&q=60&w=1600&h=600">
     <section v-else>
       <Beer v-for="beer in beers"
         :key="beer.id"
@@ -113,8 +113,9 @@ p.search-btn {
   background: #00afdb;
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-bottom: 0px;
 }
 img {
-  width: 500px;
+  width: 100vw;
 }
 </style>
