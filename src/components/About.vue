@@ -29,7 +29,7 @@
         <h3>Drew Van Valkenburg</h3>
         <img class="profile" src= "../assets/profile_pic.jpg">
         <p>
-          Drew is an avid reader, web developer, snowboarder and basketball player. His favorite beer is Fresh Squeezed IPA
+          Drew is an avid reader, web developer, snowboarder and basketball player. His favorite beer is Fresh Squeezed IPA.
         </p>
       </div>
     </section>
