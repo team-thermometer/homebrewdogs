@@ -18,8 +18,6 @@ export default {
 <style lang="postcss" scoped>
 footer {
   background: purple;
-  margin-top: 5px;
-  margin-bottom: 5px;
   padding-top: 10px;
   padding-bottom: 15px;
   color: white;

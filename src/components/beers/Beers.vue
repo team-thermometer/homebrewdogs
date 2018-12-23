@@ -119,4 +119,7 @@ img {
 h1 {
   margin-bottom: 0;
 }
+section {
+  margin-bottom: -8px;
+}
 </style>
