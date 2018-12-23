@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 li {
   text-align: left;
   list-style: none;

@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <a href="https://www.brewdog.com/usa/beer-2/headliners" target="_blank" class="footer">Brewdog</a>
+        Beer courtesy <a href="https://www.brewdog.com/usa/beer-2/headliners" target="_blank" class="footer">Brewdog Brewery</a>
     </footer>
 </template>
 
@@ -14,17 +14,21 @@ export default {
   },
 };
 </script>
-<style scoped>
 
-.footer {
-  text-decoration: none;
-  padding: 20px;
-  font-size: 1em;
-  color: #2c3e50;
-  font-weight: bold;
+<style lang="postcss" scoped>
+footer {
+  background: purple;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  color: white;
+  font-size: 16px;
 }
-.footer:hover {
+a.footer {
+  color: white;
+}
+a.footer:hover {
   color:#00afdb;
 }
-
 </style>

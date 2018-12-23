@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="handleSubmit">
       <h1>Search Beers</h1>
-        Name: <input v-model="keyword">
+        Keyword: <input v-model="keyword" required v-focus pattern="[^\s]+">
         <button>Search</button>
     </form>
 </template>
@@ -9,12 +9,12 @@
 <script>
 export default {
   props: {
-    search: String,
     onSearch: Function
   },
   data() {
     return {
-      keyword: this.search || ''
+      search: '',
+      keyword: this.search
     };
   },
   watch: {
@@ -28,7 +28,7 @@ export default {
     handleSubmit() {
       this.$router.push({
         query: {
-          search: encodeURIComponent(this.keyword)
+          search: this.keyword
         }
       });
     }

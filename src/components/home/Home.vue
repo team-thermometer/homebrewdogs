@@ -1,17 +1,17 @@
 <template>
   <div>
     <p>
-      Check out the Beer List to save your favorite beers!
+      Search the Beer List to save your favorite beers!
     </p>
     <div>
-      <h3>Your stats:</h3>
+      <h3>Your saved list:</h3>
       <table v-if="favorites">
         <thead>
           <tr>
             <th>Count</th>
-            <th>Average favorite ABV</th>
-            <th>Minimum favorite ABV</th>
-            <th>Maximum favorite ABV</th>
+            <th>Average ABV</th>
+            <th>Minimum ABV</th>
+            <th>Maximum ABV</th>
           </tr>
         </thead>
         <tbody>
@@ -26,10 +26,12 @@
       </table>
     </div>
     <div class="random">
-      <button @click="randomBeer()">Get random Beer!</button>
+      <button @click="randomBeer()" class="random-btn">Get random Beer!</button>
       <div v-if="random[0]" class="random">
         <img :src="random[0].image_url" class="random_image">
-        {{random[0].name}}!
+          <RouterLink class="router" :to="`/beers/${random[0].id}`">
+          {{random[0].name}}
+          </RouterLink>
         <p>
         Pairs well with: {{random[0].food_pairing[0]}}
         </p>
@@ -41,7 +43,9 @@
           <img :src= "beer.image_url">
           <div class="info">
             <p>
-            {{beer.name}}, 
+              <RouterLink class="router" :to="`/beers/${beer.id}`">
+                {{beer.name}}
+              </RouterLink>
             </p>
             {{beer.tagline}}
             <p>
@@ -54,6 +58,7 @@
 
 <script>
 import api from '../../services/api';
+
 export default {
   data() {
     return {
@@ -88,7 +93,6 @@ export default {
   }
 }
 .list {
-  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +103,7 @@ img {
   margin-right: 20px;
 }
 .random {
-  padding-top: 12px;
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +112,9 @@ img {
 }
 .random_image {
   margin: 20px 0px;
+}
+button.random-btn {
+  margin-bottom: 5px;
 }
 table {
   width: 100%;
@@ -120,5 +127,4 @@ td {
   padding: 10px 3px;
   border: 1px solid gray;
 }
-
 </style>

@@ -53,7 +53,7 @@ h3 {
 h1 {
   background-color: #00afdb;
 }
-p{
+p {
   padding:10px;
   vertical-align: bottom;
   width: 100%;

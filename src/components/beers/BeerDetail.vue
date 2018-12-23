@@ -3,11 +3,15 @@
     <h2>{{beer.name}}</h2>
     <p class="checkmark"
       @click="handleAdd">✓</p>
-    <star-rating v-if="favorites[0]"
+    <span id="saved" v-if="this.saved"></span>
+    <p id="rated" v-if="this.saved"></p>
+    <StarRating v-if="favorites[0]"
       class="stars"
-      :increment="0.5"
+      :increment="1"
       v-model="rating"
-      @click.native="handleRate"></star-rating>
+      @click.native="handleRate"
+    >
+    </StarRating>
     <p>{{beer.description}}</p>
     <img :src="beer.image_url">
     <p>ABV: {{beer.abv}}</p>
@@ -23,6 +27,7 @@ import { StarRating } from 'vue-rate-it';
 export default {
   data() {
     return {
+      saved: [],
       beer: null,
       favorites: [],
       beerIcon: '',
@@ -35,9 +40,7 @@ export default {
   },
   created() {
     api.getBeer(this.$route.params.id)
-      .then(beer => {
-        this.beer = beer[0];
-      });
+      .then(beer => this.beer = beer[0]);
   },
   methods: {
     handleAdd() {
@@ -50,12 +53,16 @@ export default {
       return api.addFavorite(oneBeer)
         .then(saved => {
           this.favorites.push(saved);
+          let savedB = document.getElementById('saved');
+          savedB.innerHTML = 'saved!';
         });
     },
     handleRate() {
       let rating = { rating: this.rating, favoriteId: this.favorites[0].id };
       return api.addRating(rating)
         .then(savedRating => {
+          let rated = document.getElementById('rated');
+          rated.innerHTML = 'rated!';
           this.ratings.push(savedRating);
         });
     }
@@ -64,18 +71,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 section {
-  margin: 0px 100px;
+  margin: 20px 100px;
 }
 h2 {
   display: inline;
-  padding: 0px;
 }
-p{
-  list-style: none;
+p {
   align-content: center;
-  padding-left: 0;
 }
 .checkmark {
   display: inline;
@@ -85,11 +89,8 @@ p{
   cursor: pointer;
 }
 .stars {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 img {
   width: 50px;

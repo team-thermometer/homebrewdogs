@@ -2,13 +2,12 @@
   <div id="app">
     <Header/>
     <nav v-if="user">
-        <RouterLink class="nav" to="/">Home</RouterLink>
-        <RouterLink class="nav" to="/beers">Beers List</RouterLink>
-        <RouterLink class="nav" to="/profile">Profile</RouterLink>
-        <RouterLink class="nav" to="/about">About Us</RouterLink>
-        <a class="nav" href="#" @click="handleLogout">Logout</a>
+      <RouterLink class="nav" to="/">Home</RouterLink>
+      <RouterLink class="nav" to="/beers">Beers List</RouterLink>
+      <RouterLink class="nav" to="/profile">Profile</RouterLink>
+      <RouterLink class="nav" to="/about">About Us</RouterLink>
+      <a class="nav" href="#" @click="handleLogout">Logout</a>
     </nav>
-
     <main class="content">
       <RouterView v-if="user" :user="user"/>
       <Auth v-else
@@ -77,10 +76,7 @@ export default {
 };
 </script>
 
-<style scoped>
-main {
-  padding-top: 20px;
-}
+<style lang="postcss" scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -92,6 +88,7 @@ main {
 nav {
   display:flex;
   justify-content: space-evenly;
+  /* border-bottom: 1px solid purple; */
 }
 .nav {
   text-decoration: none;
@@ -102,6 +99,9 @@ nav {
   color:#00afdb;
 }
 .content {
-    min-height:73vh;
+  min-height: 65vh;
+}
+span {
+  font-size: 16px;
 }
 </style>
