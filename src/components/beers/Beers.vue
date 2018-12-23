@@ -1,23 +1,24 @@
 <template>
-  <ul v-if="search">
-    <p class="search-btn">
-    <button class="search" @click="showModal = true">
-      Search
-    </button>
-    </p>
-    <Modal v-if="showModal" :onClose="() => showModal = false">
-      <BeerSearch :onSearch="handleSearch" :search="search"/>
-    </Modal>
-    <img v-if="search === 'undefined' || page === 'undefined'"
-         src="https://marketingweek.imgix.net/content/uploads/2016/05/26124706/Brewdog_masthead_1.png?auto=compress,format,&crop=faces,entropy,edges&fit=crop&q=60&w=1600&h=600">
+  <ul>
+    <section v-if="search == 'undefined'">
+      <h1 class="search-btn">
+        <button class="search" @click="showModal = true">Search</button>
+      </h1>
+      <Modal v-if="showModal" :onClose="() => showModal = false">
+        <BeerSearch :onSearch="handleSearch" :search="search"/>
+      </Modal>
+      <img v-if="search === 'undefined' || page === 'undefined'"
+        src="https://marketingweek.imgix.net/content/uploads/2016/05/26124706/Brewdog_masthead_1.png?auto=compress,format,&crop=faces,entropy,edges&fit=crop&q=60&w=1600&h=600">
+    </section>
     <section v-else>
+    <p v-if="beers.length === 0">No results</p>
       <Beer v-for="beer in beers"
         :key="beer.id"
         :beer="beer"/>
       <p>
         <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
-        Searching for &quot;{{ search }}&quot; Page {{page}}
-        <button @click="handlePage(1)">Next</button>
+        Searching for &quot;{{ search }}&quot; Page {{ page }}
+        <button @click="handlePage(1)" :disabled="beers.length < 1">Next</button>
       </p>
     </section>
   </ul>
@@ -33,11 +34,10 @@ export default {
   name: 'beers',
   data() {
     return {
-      beers: null,
-      search: decodeURIComponent(this.$route.query.search = ' '),
+      beers: Array,
+      search: decodeURIComponent(this.$route.query.search),
       showModal: false,
-      page: decodeURIComponent(this.$route.query.page) || 1
-      
+      page: 1 || decodeURIComponent(this.$route.query.page)
     };
   },
   components: {
@@ -59,7 +59,7 @@ export default {
       if(newSearch !== oldSearch) {
         newPage = 1;
       }
-      this.search = decodeURIComponent(newSearch);
+      this.search = newSearch;
       this.page = newPage;
       this.handleSearch();
     }
@@ -72,9 +72,7 @@ export default {
     },
     searchBeers() {
       api.getBeerByKeyword(this.search, this.page)
-        .then(beers => {
-          return this.beers = beers;
-        });
+        .then(beers => this.beers = beers);
     },
     handlePage(increment) {
       this.page += increment;
@@ -97,25 +95,28 @@ ul {
   list-style: none;
   align-content: center;
   padding-left: 0;
+  margin-bottom: 0;
 }
 li {
   padding: 20px;
 }
-.search {
+button.search {
   cursor: pointer;
   font-size: 18px;
   border-radius: 12px;
 }
-button:hover {
+button.search:hover {
   background: gold;
 }
-p.search-btn {
+.search-btn {
   background: #00afdb;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 10px;
-  margin-bottom: 0px;
 }
 img {
-  width: 100vw;
+  margin-top: 0px;
+}
+h1 {
+  margin-bottom: 0;
 }
 </style>

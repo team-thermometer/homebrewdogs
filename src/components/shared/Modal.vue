@@ -1,10 +1,10 @@
 <template>
-    <div class="modal" @click="onClose" @keyup.esc="onClose">
-        <div class="content" @click.stop="">
-            <button class="close" @click="onClose">X</button>
-            <slot></slot>
-        </div>
+  <div class="modal" @click="onClose" @keyup.esc="onClose">
+    <div class="content" @click.stop="">
+      <button class="close" @click="onClose">X</button>
+      <slot></slot>
     </div>
+  </div>
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .modal {
   position: fixed;
   top: 0; left: 0;
@@ -47,5 +47,4 @@ export default {
   top: 5px;
   right: 5px;
 }
-
 </style>

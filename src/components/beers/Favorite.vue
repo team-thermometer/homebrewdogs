@@ -1,21 +1,23 @@
 <template>
   <li>
-    <h3>
-      {{updatedFavorite.name}}
-    </h3>
-    <p v-if="favorite.comments"> 
-      {{favorite.comments}}
+    <span>
+      <h4>{{updatedFavorite.name}}</h4>
+      <button @click="handleDelete" class="delete">Delete</button>
+      <button @click="() => show = !show" class="comment">Comment</button>
+    </span>
+    <p class="view">
     </p>
-    <button @click="() => show = !show">Comment</button>
     <div v-if="show">
       <form @submit.prevent="onEdit(favorite, updatedFavorite)">
-        <p>
+        <span>
           <textarea v-model="updatedFavorite.comments" placeholder="leave a comment about this beer"></textarea>
-        </p>
-        <button @click="() => show = !show">Submit</button>
+          <button @click="() => show = !show">Submit</button>
+        </span>
       </form>
     </div>
-    <button @click="handleDelete" class="delete">Delete Beer</button>
+    <p v-if="favorite.comments">
+      {{favorite.comments}}
+    </p>
   </li>
 </template>
 
@@ -48,8 +50,8 @@ export default {
     handleDelete() {
       api.deleteFavorite(this.favorite.id)
         .then(() => {
-          alert('Deleted beer');
           this.$router.go();
+          alert('Deleted beer');
         });
     }
   }
@@ -57,7 +59,30 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-li:hover {
-  background: #00afdb;
+h4, p {
+  margin: 2px;
 }
+span {
+  display: inline-flex;
+  align-items: center;
+}
+button.delete {
+  margin: 5px;
+}
+button:hover {
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 3px 3px 8px rgba(160, 158, 158, 0.89);
+}
+h3 {
+  display: inline;
+}
+.link {
+  font-size: 12px;
+}
+textarea {
+  margin-right: 5px;
+  margin-bottom: 8px;
+}
+
 </style>
