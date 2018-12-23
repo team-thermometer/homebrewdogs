@@ -1,29 +1,12 @@
-# homebrewdogs-app
+# Homebrewdog
 
-## Project setup
-```
-npm install
-```
+**Authors**: Aaron Dennis, Dyanna Tolman, Drew Van Valkenburg, Cari Palazzolo
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Overview
+For our final project of Bootcamp 2, we built an app for searching, saving and keeping track of your favorite Brewdog Brewery beers.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Technology
+Vue CLI, PostgreSQL, Express, JavaScript, HTML, CSS, PostCSS, Vue Rate-It
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Sources
+ Punk Api: https://punkapi.com/documentation/v2
