@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    beer: null
+    beer: Object
   }
 };
 </script>
