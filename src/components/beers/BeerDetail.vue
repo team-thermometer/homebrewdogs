@@ -1,22 +1,23 @@
 <template>
   <section v-if="beer">
     <h2>{{beer.name}}</h2>
-    <p class="checkmark"
-      @click="handleAdd">✓</p>
-    <span id="saved" v-if="this.saved"></span>
-    <p id="rated" v-if="this.saved"></p>
+
+    <!-- This should change once the beer is added -->
+    <p class="checkmark" @click="handleAdd">{{saved ? 'saved' : '✓'}}</p>
+
     <StarRating v-if="favorites[0]"
       class="stars"
       :increment="1"
       v-model="rating"
       @click.native="handleRate"
-    >
-    </StarRating>
+    />
+    
     <p>{{beer.description}}</p>
     <img :src="beer.image_url">
     <p>ABV: {{beer.abv}}</p>
     <p>IBU: {{beer.ibu}}</p>
     <p>First brewed: {{beer.first_brewed}}</p>
+
   </section>
 </template>
 
@@ -27,7 +28,7 @@ import { StarRating } from 'vue-rate-it';
 export default {
   data() {
     return {
-      saved: [],
+      saved: false,
       beer: null,
       favorites: [],
       beerIcon: '',
@@ -52,9 +53,13 @@ export default {
       };
       return api.addFavorite(oneBeer)
         .then(saved => {
+          // not sure how user favorite for one beer could be array
           this.favorites.push(saved);
-          let savedB = document.getElementById('saved');
-          savedB.innerHTML = 'saved!';
+          // Reaching into the dom is a big no-no in component architectures,
+          // let savedB = document.getElementById('saved');
+          // savedB.innerHTML = 'saved!';
+          // Just add to data:
+          this.saved = true;
         });
     },
     handleRate() {

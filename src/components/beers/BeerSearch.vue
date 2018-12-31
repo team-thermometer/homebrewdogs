@@ -8,9 +8,6 @@
 
 <script>
 export default {
-  props: {
-    onSearch: Function
-  },
   data() {
     return {
       search: '',

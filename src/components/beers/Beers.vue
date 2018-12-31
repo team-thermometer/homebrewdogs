@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <div>
     <section v-if="search == 'undefined'">
       <h1 class="search-btn">
         <button class="search" @click="showModal = true">Search</button>
@@ -11,17 +11,22 @@
         src="https://marketingweek.imgix.net/content/uploads/2016/05/26124706/Brewdog_masthead_1.png?auto=compress,format,&crop=faces,entropy,edges&fit=crop&q=60&w=1600&h=600">
     </section>
     <section v-else>
-    <p v-if="beers.length === 0">No results</p>
-      <Beer v-for="beer in beers"
-        :key="beer.id"
-        :beer="beer"/>
-      <p>
-        <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
-        Searching for &quot;{{ search }}&quot; Page {{ page }}
-        <button @click="handlePage(1)" :disabled="beers.length < 1">Next</button>
-      </p>
+      <p v-if="beers.length === 0">No results</p>
+      <div v-else>
+        <ul>
+          <Beer v-for="beer in beers"
+            :key="beer.id"
+            :beer="beer"/>
+        </ul> 
+        <p>
+          <button @click="handlePage(-1)" :disabled="page === 1">Prev</button>
+          Searching for &quot;{{ search }}&quot; Page {{ page }}
+          <button @click="handlePage(1)" :disabled="beers.length < 1">Next</button>
+        </p>
+      </div>
+
     </section>
-  </ul>
+  </div>
 </template>
 
 <script>
@@ -34,7 +39,7 @@ export default {
   name: 'beers',
   data() {
     return {
-      beers: Array,
+      beers: null,
       search: decodeURIComponent(this.$route.query.search),
       showModal: false,
       page: 1 || decodeURIComponent(this.$route.query.page)

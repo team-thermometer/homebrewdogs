@@ -1,39 +1,40 @@
 <template>
   <div class="savedlist">
     <h1>Saved List</h1>
-    <h3 v-if="favorites < 1"> Go out and try some BrewDog beers!</h3>
-      <ul>
-        <Favorite v-for="favorite in favorites" 
-          :key="favorite.id"
-          :favorite="favorite"
-          :onEdit="handleComment"
-        />
-      </ul>
-      <section v-if="ratings != 0">
-        <hr>
-        <h2 id="table">By ratings</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Rating</th>
-              <th>Name</th>
-              <th>IBU</th>
-              <th>ABV</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="rating in ratings"
-              :key="rating.id">
-              <td>{{rating.rating}} stars</td>
-              <RouterLink class="router" :to="`/beers/${rating.api_id}`">
-                <td>{{rating.name}}</td>
-              </RouterLink>
-              <td>{{rating.ibu}}</td>
-              <td>{{rating.abv}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+    <h3 v-if="favorites && favorites.length === 0">Go out and try some BrewDog beers!</h3>
+    <ul v-if="favorites">
+      <Favorite v-for="favorite in favorites" 
+        :key="favorite.id"
+        :favorite="favorite"
+        :onEdit="handleComment"
+      />
+    </ul>
+
+    <section v-if="ratings && ratings.length > 0">
+      <hr>
+      <h2 id="table">By ratings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rating</th>
+            <th>Name</th>
+            <th>IBU</th>
+            <th>ABV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="rating in ratings"
+            :key="rating.id">
+            <td>{{rating.rating}} stars</td>
+            <RouterLink class="router" :to="`/beers/${rating.api_id}`">
+              <td>{{rating.name}}</td>
+            </RouterLink>
+            <td>{{rating.ibu}}</td>
+            <td>{{rating.abv}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </div>
 </template>
 
@@ -47,7 +48,6 @@ export default {
     return {
       ratings: null,
       favorites: null, 
-      beer: null,
       user: null
     };
   },
@@ -57,11 +57,8 @@ export default {
   created() {
     api.getFavorites()
       .then(favorites => this.favorites = favorites);
-    api.getBeers()
-      .then(beer => this.beer = beer);
     api.getRatings()
       .then(ratings => this.ratings = ratings);
-    console.log('Rating, getting ratings');
   },
   methods: {
     handleComment(old, favorite) {
